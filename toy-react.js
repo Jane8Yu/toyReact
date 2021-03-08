@@ -13,9 +13,9 @@ class ElementWrapper {
         range.setEnd(this.root, this.root.childNodes.length);
         component[RENDER_TO_DOM](range);
     }
-    
+
     [RENDER_TO_DOM](range){
-        range.deleteContent();
+        range.deleteContents();
         range.insertNode(this.root);
     }
 }
@@ -25,7 +25,7 @@ class TextWrapper {
         this.root = document.createTextNode(content);
     }
     [RENDER_TO_DOM](range){
-        range.deleteContent();
+        range.deleteContents();
         range.insertNode(this.root);
     }
 } 
