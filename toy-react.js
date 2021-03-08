@@ -28,6 +28,9 @@ export class Component{
     appendChild(component){
        this.children.push(component)
     }
+    _renderToDOM(range){
+        this.render()._renderToDOM(range);
+    }
     get root(){
         if(!this._root){
             this._root = this.render().root;
