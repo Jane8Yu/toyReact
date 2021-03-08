@@ -1,3 +1,5 @@
+const RENDER_TO_DOM = Symbol('render to DOM');
+
 class ElementWrapper {
     constructor(type){
         this.root = document.createElement(type);
@@ -28,7 +30,7 @@ export class Component{
     appendChild(component){
        this.children.push(component)
     }
-    _renderToDOM(range){
+    [RENDER_TO_DOM](range){
         this.render()._renderToDOM(range);
     }
     get root(){
