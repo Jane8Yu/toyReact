@@ -10,11 +10,19 @@ class ElementWrapper {
     appendChild(component){
         this.root.appendChild(component.root);
     }
+    [RENDER_TO_DOM](range){
+        range.deleteContent();
+        range.insertNode(this.root);
+    }
 }
 
 class TextWrapper {
     constructor(content){
         this.root = document.createTextNode(content);
+    }
+    [RENDER_TO_DOM](range){
+        range.deleteContent();
+        range.insertNode(this.root);
     }
 } 
 
@@ -31,13 +39,7 @@ export class Component{
        this.children.push(component)
     }
     [RENDER_TO_DOM](range){
-        this.render()._renderToDOM(range);
-    }
-    get root(){
-        if(!this._root){
-            this._root = this.render().root;
-        }
-        return this._root;
+        this.render()[RENDER_TO_DOM](range);
     }
 }
 
