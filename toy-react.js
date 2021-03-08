@@ -8,8 +8,12 @@ class ElementWrapper {
         this.root.setAttribute(name, value);
     }
     appendChild(component){
-        this.root.appendChild(component.root);
+        let range = document.createRange();
+        range.setStart(this.root, 0);
+        range.setEnd(this.root, this.root.childNodes.length);
+        component[RENDER_TO_DOM](range);
     }
+    
     [RENDER_TO_DOM](range){
         range.deleteContent();
         range.insertNode(this.root);
@@ -70,5 +74,9 @@ export function createElement(type, attributes, ...children) {
 }
 
 export function render(component, parentElement) {
-    parentElement.appendChild(component.root);
+    let range = document.createRange();
+    range.setStart(parentElement, 0);
+    range.setEnd(parentElement, parentElement.childNodes.length);
+    range.deleteContents();
+    component[RENDER_TO_DOM](range);
 }
