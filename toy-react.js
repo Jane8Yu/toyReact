@@ -50,8 +50,9 @@ export class Component{
         this._range = range;
         this.render()[RENDER_TO_DOM](range);
     }
-    rerender(){
-
+    reRender(){
+        this._range.deleteContents();
+        this[RENDER_TO_DOM](this._range);
     }
 }
 
