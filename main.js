@@ -17,7 +17,8 @@ class MyComponent extends Component {
         </div>
     }
 }
-
+let game = <MyComponent />
+console.log(game.vDom);
 
 render(<MyComponent id='a' class='c'> 
     <div>
